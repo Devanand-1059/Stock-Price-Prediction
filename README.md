@@ -26,11 +26,17 @@ It fetches real-time historical stock data, trains a machine learning model, pre
 ## 📂 Project Structure
 
 ├── stockapp.py # Main Streamlit application
+
 ├── requirements.txt # Python dependencies
+
 ├── README.md # Project documentation
+
 ├── AAPL_historical_data.csv # Sample exported historical dataset
+
 ├── AAPL_combined_analysis.csv # Sample combined historical + prediction data
+
 ├── AMZN_historical_data.csv # Sample exported historical dataset
+
 ├── AMZN_combined_analysis.csv # Sample combined historical + prediction data
 
 
@@ -110,15 +116,29 @@ INFY.NS
 
 ---
 
+## 📊 Power BI Dashboard
+
+This project also includes a Power BI dashboard created using the exported
+historical and predicted stock price data.
+
+### Dashboard Highlights
+- Historical vs Predicted price comparison
+- Moving averages and volatility analysis
+- Stock-wise trend analysis
+- Interactive filters by ticker and date
+
+📁 File: `Stock_Price_Analysis_PowerBI.pbix`
+
+
 📌 Use Cases
 
-Beginner Machine Learning Project
+-Beginner Machine Learning Project
 
-Data Science Portfolio Project
+-Data Science Portfolio Project
 
-Power BI Dashboard Integration
+-Power BI Dashboard Integration
 
-Financial Data Analysis Practice
+-Financial Data Analysis Practice
 
 ---
 
@@ -132,6 +152,7 @@ It should not be used for real-world financial or investment decisions.
 👤 Author
 
 Devanand S
+
 Student | Aspiring Data Scientist & ML Engineer
 
 
