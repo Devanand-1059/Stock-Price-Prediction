@@ -1,179 +1,94 @@
-# 📈 Stock Price Prediction using Machine Learning (Streamlit App)
+Stock Price Prediction & Forecasting Dashboard
 
-This project is an interactive **Stock Price Prediction Web Application** built using **Python, Machine Learning, and Streamlit**.  
-It fetches real-time historical stock data, trains a machine learning model, predicts future prices, and exports analysis-ready datasets for visualization tools like **Power BI**.
+An end-to-end stock forecasting project built on live market data. It trains a Random Forest model, validates it honestly with walk-forward testing against a naive baseline, adds news sentiment as a feature, backtests a trading strategy on the predictions, and presents the results in both a Streamlit app and a Power BI dashboard.
 
- 🚀 Features
+Live Demo | Power BI Dashboard
 
-- 🔍 Fetches real-time stock data using Yahoo Finance  
-- 🤖 Uses **Random Forest Regressor** for price prediction  
-- 📊 Visualizes historical vs predicted prices  
-- 📈 Displays prediction summary with price change & percentage  
-- 💾 Exports datasets for **Power BI / Excel analysis**  
-- 🌙 Dark-mode optimized visualization  
-- 🧑‍💻 Beginner-friendly and interactive UI  
+Why this project
 
-🛠️ Technologies & Libraries Used
+Most beginner stock predictors report a single train/test accuracy on shuffled data, which leaks future information and looks better than it really is. This project is built to avoid that:
 
-- Python  
-- Streamlit  
-- yfinance  
-- Pandas  
-- NumPy  
-- Matplotlib  
-- Scikit-learn  
+Walk-forward validation respects time order, so the model never sees the future.
+Naive baseline comparison shows whether the model actually beats "tomorrow's price equals today's price."
+Backtesting checks whether predictions would have produced a useful strategy, not just a low error score.
+Features
+Live price data pulled with yfinance (no static dataset to go stale)
+Feature engineering from historical price and volume data
+Random Forest forecasting model
+Walk-forward validation with model comparison against a naive baseline
+News sentiment scoring using a transformer-based model, used as an additional feature
+Strategy backtest on model predictions
+Interactive Streamlit app for choosing a ticker and viewing forecasts
+Results exported as CSV files that feed a Power BI dashboard
+Tech stack
+Area	Tools
+Language	Python 3.13
+Data	yfinance, pandas, NumPy
+Modeling	scikit-learn (Random Forest)
+Sentiment	Hugging Face Transformers, PyTorch
+App	Streamlit
+Dashboard	Power BI
+Project structure
+.
+├── app.py                 # Streamlit app
+├── requirements.txt
+├── results/               # CSV outputs used by Power BI
+├── powerbi/               # Power BI dashboard file / screenshots
+└── README.md
 
-## 📂 Project Structure
+Update this tree to match your actual folders and file names.
 
-├── stockapp.py # Main Streamlit application
+Results
+Metric	Naive baseline	Random Forest	Random Forest + Sentiment
+RMSE	YOUR_VALUE	YOUR_VALUE	YOUR_VALUE
+MAE	YOUR_VALUE	YOUR_VALUE	YOUR_VALUE
+Directional accuracy	YOUR_VALUE	YOUR_VALUE	YOUR_VALUE
 
-├── requirements.txt # Python dependencies
+Backtest summary: YOUR_STRATEGY_RETURN vs. buy-and-hold YOUR_BENCHMARK_RETURN over YOUR_PERIOD.
 
-├── README.md # Project documentation
+Add 1 or 2 screenshots here (forecast chart, Power BI dashboard):
 
-├── AAPL_historical_data.csv # Sample exported historical dataset
+![Forecast chart](images/forecast.png)
+![Power BI dashboard](images/powerbi.png)
+Getting started
+1. Clone the repository
+bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+cd YOUR_REPO
+2. Create a virtual environment
+bash
+python -m venv venv
 
-├── AAPL_combined_analysis.csv # Sample combined historical + prediction data
+# Windows
+venv\Scripts\activate
 
-├── AMZN_historical_data.csv # Sample exported historical dataset
-
-├── AMZN_combined_analysis.csv # Sample combined historical + prediction data
-
-
- 📊 Machine Learning Model
-
-- **Algorithm Used:** Random Forest Regressor  
-- **Input Feature:** Closing price  
-- **Prediction Type:** Short-term future price prediction  
-- **Evaluation Metrics:**
-  - Mean Squared Error (MSE)
-  - Root Mean Squared Error (RMSE)
-
- 📁 Data Export Details
-
-The application exports two types of datasets:
-
- 1️⃣ Historical Data
-Includes:
-- Date  
-- Open, High, Low, Close, Volume  
-- Moving Averages (7-day, 30-day)  
-- Volatility  
-- Daily Returns  
-
-📄 File: `TICKER_historical_data.csv`
-
----
-
-### 2️⃣ Combined Analysis Data
-Includes:
-- Historical prices  
-- Predicted future prices  
-- Data type (Historical / Predicted)  
-- Ticker symbol  
-
-📄 File: `TICKER_combined_analysis.csv`
-
-These files can be directly imported into **Power BI or Excel** for dashboard creation.
-
-▶️ How to Run the Project
-
-
-Step 1: Clone the Repository
-Run the following commands in your terminal:
-
-git clone https://github.com/your-username/stock-price-prediction.git
-cd stock-price-prediction
-
-
-Step 2: Install Dependencies
-Make sure Python is installed, then install the required libraries:
-
+# macOS / Linux
+source venv/bin/activate
+3. Install dependencies
+bash
 pip install -r requirements.txt
+4. Run the app
+bash
+streamlit run app.py
+How it works
+Data: Historical prices are downloaded live with yfinance for the selected ticker.
+Features: Price- and volume-based features are engineered, and news sentiment scores are added.
+Model: A Random Forest is trained and evaluated with walk-forward validation, so each prediction uses only past data.
+Comparison: Results are compared with a naive baseline to confirm the model adds real value.
+Backtest: Predictions drive a simple strategy that is tested against buy-and-hold.
+Presentation: Results are shown in Streamlit and exported to CSV for the Power BI dashboard.
+Limitations
+Stock markets are noisy, and past performance does not guarantee future results.
+News sentiment coverage depends on the headlines available for each ticker.
+The backtest does not include transaction costs or slippage.
+Disclaimer
 
+This project is for educational purposes only and is not financial advice.
 
-Step 3: Run the Streamlit App
-Start the application using:
+Future improvements
+Add more models (for example gradient boosting, LSTM) to the comparison
+Include transaction costs in the backtest
+Support multi-ticker portfolio forecasting
+Author
 
-streamlit run stockapp.py
-
----
-
-🧪 Example Stock Tickers
-
-AAPL
-
-AMZN
-
-MSFT
-
-GOOGL
-
-TSLA
-
-INFY.NS
-
-
----
-
-## 📊 Power BI Dashboard
-
-This project also includes a Power BI dashboard created using the exported
-historical and predicted stock price data.
-
-### Dashboard Highlights
-- Historical vs Predicted price comparison
-- Moving averages and volatility analysis
-- Stock-wise trend analysis
-- Interactive filters by ticker and date
-
-📁 File: `Stock_Price_Analysis_PowerBI.pbix`
-
-
-📌 Use Cases
-
--Beginner Machine Learning Project
-
--Data Science Portfolio Project
-
--Power BI Dashboard Integration
-
--Financial Data Analysis Practice
-
----
-
-⚠️ Disclaimer
-
-This project is for educational purposes only.
-It should not be used for real-world financial or investment decisions.
-
----
-
-👤 Author
-
-Devanand S
-
-Student | Aspiring Data Scientist & ML Engineer
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+YOUR NAME Final-year Data Science / Computer Science student, BIHER LinkedIn | GitHub | Email
